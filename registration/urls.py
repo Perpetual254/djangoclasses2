@@ -9,7 +9,11 @@ urlpatterns = [
      path ('login/', views.login , name='mylogin'),
      path ('contact/', views.contact , name='mycontact'),
      path ('about/', views.about , name='myabout'),
-     path ('dashboard/', views.dashboard , name='mydashboard')
+     path ('dashboard/', views.dashboard , name='mydashboard'),
+     path ('addstudent',views.addstudent, name='myaddstudent')
+
+
+
 ]
 
 
