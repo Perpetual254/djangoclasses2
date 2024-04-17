@@ -10,8 +10,8 @@ urlpatterns = [
      path ('contact/', views.contact , name='mycontact'),
      path ('about/', views.about , name='myabout'),
      path ('dashboard/', views.dashboard , name='mydashboard'),
-     path ('addstudent',views.addstudent, name='myaddstudent')
-
+     path ('addstudent',views.addstudent, name='myaddstudent'),
+     path ('', views.mypage , name='mypage')
 
 
 ]
