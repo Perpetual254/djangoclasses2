@@ -33,8 +33,9 @@ def about(request):
 
 
 def dashboard(request):
-    template = loader.get_template('dashboard.html')
-    return HttpResponse(template.render())
+    data = registerstudents.objects.all();
+    context={'data':data}
+    return render(request,'dashboard.html',context)
 
 
 @csrf_exempt
@@ -51,10 +52,51 @@ def addstudent (request):
 
     obj1 = registerstudents(first_name=first_name,last_name=last_name,email=email,phone_number=phone,age=age )
     obj1.save()
+#fetching the student data from the database
+  data=registerstudents.objects.all()
+  context={'data':data}
+  return render(request,'dashboard.html',context)
 
-  #data=registerstudents().objects.all()
-  #context={'data':data}
-  return render(request,'dashboard.html')
+
+
+def editstudent(request,id):
+  data = registerstudents.objects.get(id=id);
+  context = {'data': data}
+  return render(request, 'updates.html', context)
+
+def updatestudent(request,id):
+  if request.method == 'POST':
+    first_name = request.POST.get('fname')
+    last_name = request.POST.get('lname')
+    email = request.POST.get('email')
+    age = request.POST.get('age')
+    phone = request.POST.get('number')
+    #modify the student details based on the student id given
+    editstudent = registerstudents.objects.get(id=id)
+    editstudent.studentname=first_name
+    editstudent.studentname=last_name
+    editstudent.email=email
+    editstudent.age=age
+    editstudent.phone=phone
+    editstudent.save()
+  return redirect('/dashboard')
+
+def deletestudent(request,id):
+  deletestudent = registerstudents.objects.get(id=id)
+  deletestudent.delete()
+  return redirect('/dashboard')
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
