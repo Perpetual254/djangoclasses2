@@ -36,10 +36,13 @@ def dashboard(request):
     data = registerstudents.objects.all();
     context={'data':data}
     return render(request,'dashboard.html',context)
+def payment(request):
+    template = loader.get_template('payment.html')
+    return HttpResponse(template.render())
 
 
 @csrf_exempt
-def addstudent (request):
+def addstudent(request):
   if request.method == 'POST':
     first_name = request.POST.get('fname',)
     last_name = request.POST.get('lname')
